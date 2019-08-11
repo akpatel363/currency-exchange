@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./currency-details.component.css']
 })
 export class CurrencyDetailsComponent implements OnInit {
-  @Input() ob:Object
+  @Input() ob:any
   constructor() {
     console.log(this.ob)
   }
