@@ -9,8 +9,11 @@ import { send } from 'q';
 })
 export class NavigationComponent implements OnInit {
   searchForm:FormGroup
+  sortOrder=0
   @Output() sendSearchString:EventEmitter<string>
+  @Output() sendSortOrder:EventEmitter<number>
   constructor(private formBuilder:FormBuilder) {
+    this.sendSortOrder = new EventEmitter<number>()
     this.sendSearchString = new EventEmitter<string>()
     this.searchForm = this.formBuilder.group({
       'name':[null,Validators.required]
@@ -25,5 +28,9 @@ export class NavigationComponent implements OnInit {
     if(this.searchForm.valid){
       this.sendSearchString.emit(message.name)
     }
+  }
+  changeSortOrder(no:number){
+    this.sortOrder = no
+    this.sendSortOrder.emit(no)
   }
 }
