@@ -1,4 +1,5 @@
-<app-navigation></app-navigation>
+<app-navigation (sendSearchString) = "searchStringReceieved($event)"></app-navigation>
 <div class="jumbotron text-center">
-  <h2>Currency Exchange</h2>
+  <h2>Currency Exchange Rates For INR</h2>
 </div>
+<app-currency-container [list]="data"></app-currency-container>
