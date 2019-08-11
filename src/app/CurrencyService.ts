@@ -15,6 +15,6 @@ export class CurrencyService{
             })
             return data
         })
-        return data
+         return data
     }
 }

@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
 
+You can visit it [here](https://akpatel363.github.io/currency-exchange).
+
 Just clone the project and run these two commands.<br>
 1. npm install
 2. ng serve
