@@ -7,19 +7,23 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { CurrencyContainerComponent } from './currency-container/currency-container.component';
 import { CurrencyDetailsComponent } from './currency-details/currency-details.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     CurrencyContainerComponent,
-    CurrencyDetailsComponent
+    CurrencyDetailsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     CurrencyService

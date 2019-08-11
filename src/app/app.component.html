@@ -1,8 +1,3 @@
 <app-navigation (sendSearchString) = "searchStringReceieved($event)"></app-navigation>
-<div class="jumbotron text-center">
-  <h2 class="my-3">Currency Exchange Rates For INR</h2>
-  <a href="https://www.floatrates.com" class="btn btn-dark mx-1 my-1">Visit Floatrates.com</a>
-  <a href="https://www.floatrates.com/daily/inr.json" class="mx-1 btn btn-dark my-1">See JSON</a>
-  <a href="https://www.github.com/akpatel363/currency-exchange" class="mx-1 my-1 btn btn-dark">Repository</a>
-</div>
+<app-header></app-header>
 <app-currency-container [list]="data"></app-currency-container>

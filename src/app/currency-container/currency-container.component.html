@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="alert alert-primary" *ngIf="list.length==0" @FadeInOut>
+    Loading data please wait.
+  </div>
   <div class="row">
     <div class="col-sm-4" *ngFor="let da of list; trackBy:trackData"><app-currency-details [ob]="da"></app-currency-details></div>
   </div>

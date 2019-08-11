@@ -5,7 +5,7 @@
   </button>
   <div class="navbar-collapse collapse" id="navigation">
     <form class="form-inline" [formGroup]="searchForm" (ngSubmit)="getData(searchForm.value)">
-      <input type="text" class="form-control mx-0 mx-md-2 mt-1 mt-md-0" name="name" [formControl]="searchForm.controls['name']">
+      <input type="text" class="form-control mx-0 mx-md-2 mt-1 mt-md-0" name="name" placeholder="Search Here....." [formControl]="searchForm.controls['name']">
       <input type="submit" class="btn btn-outline-success mr-1 mr-sm-2 mt-2 mt-sm-0">
       <input type="Reset" class="btn btn-outline-danger mx-1 mx-sm-0 mt-2 mt-sm-0" (click)="reset()">
     </form>
