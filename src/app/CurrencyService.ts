@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class CurrencyService{
-    API_URL:string = 'http://www.floatrates.com/daily/inr.json'
+    API_URL:string = 'https://www.floatrates.com/daily/inr.json'
     constructor(private client:HttpClient){}
     getdata(){
         var data = []
