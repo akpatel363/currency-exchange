@@ -3,7 +3,7 @@
     Loading data please wait.
   </div>
   <div class="alert alert-danger" *ngIf="list.length==0&&length!=0" @FadeInOut>
-    No matching results found. Want to <a href="#" class="alert-link" (click)="resetData()">reset</a>.
+    No matching results found. Click <a href="#" class="alert-link" (click)="resetData()">here</a> to reset.
   </div>
   <div class="row">
     <div class="col-sm-4" *ngFor="let da of list; trackBy:trackData"><app-currency-details [ob]="da"></app-currency-details></div>
