@@ -16,7 +16,7 @@ export class NavigationComponent implements OnInit {
     this.sendSortOrder = new EventEmitter<number>()
     this.sendSearchString = new EventEmitter<string>()
     this.searchForm = this.formBuilder.group({
-      'name':[null,Validators.required]
+      'currencyname':[null,Validators.required]
     });
   }
   ngOnInit() {
@@ -26,7 +26,7 @@ export class NavigationComponent implements OnInit {
   }
   getData(message){
     if(this.searchForm.valid){
-      this.sendSearchString.emit(message.name)
+      this.sendSearchString.emit(message.currencyname)
     }
   }
   changeSortOrder(no:number){
