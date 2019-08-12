@@ -47,9 +47,12 @@ export class AppComponent {
   }
   sort(){
     switch(this.sortNo){
-      case 1:this.sortByName();break;
-      case 2:this.sortByRate();break;
-      case 3:this.sortByInverseRate();break;
+      case 11:this.sortByName();break;
+      case 21:this.sortByRate();break;
+      case 31:this.sortByInverseRate();break;
+      case 12:this.sortByName();this.data.reverse();break;
+      case 22:this.sortByRate();this.data.reverse();break;
+      case 32:this.sortByInverseRate();this.data.reverse();break;
     }
   }
   sortOrderReceieved(no:number){

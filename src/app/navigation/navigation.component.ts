@@ -1,7 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { send } from 'q';
-
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -10,6 +8,7 @@ import { send } from 'q';
 export class NavigationComponent implements OnInit {
   searchForm:FormGroup
   sortOrder=0
+  sortMode=1
   @Output() sendSearchString:EventEmitter<string>
   @Output() sendSortOrder:EventEmitter<number>
   constructor(private formBuilder:FormBuilder) {
@@ -29,8 +28,11 @@ export class NavigationComponent implements OnInit {
       this.sendSearchString.emit(message.currencyname)
     }
   }
-  changeSortOrder(no:number){
-    this.sortOrder = no
-    this.sendSortOrder.emit(no)
+  changeSortOrder(no:number,mo:number){
+    if(no!=0){
+      this.sortMode = mo
+      this.sortOrder = no
+      this.sendSortOrder.emit(no+this.sortMode)
+    }
   }
 }

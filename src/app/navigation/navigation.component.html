@@ -8,9 +8,16 @@
       <li class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sort By</a>
         <div class="dropdown-menu">
-          <a href="#" class="dropdown-item" [ngClass]="{active: sortOrder==1}" (click)="changeSortOrder(1)">Name</a>
-          <a href="#" class="dropdown-item" [ngClass]="{active: sortOrder==2}" (click)="changeSortOrder(2)">Rate</a>
-          <a href="#" class="dropdown-item" [ngClass]="{active: sortOrder==3}" (click)="changeSortOrder(3)">Inverse Rate</a>
+          <a href="#" class="dropdown-item" [ngClass]="{active: sortOrder==10}" (click)="changeSortOrder(10,sortMode)">Name</a>
+          <a href="#" class="dropdown-item" [ngClass]="{active: sortOrder==20}" (click)="changeSortOrder(20,sortMode)">Rate</a>
+          <a href="#" class="dropdown-item" [ngClass]="{active: sortOrder==30}" (click)="changeSortOrder(30,sortMode)">Inverse Rate</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Sort Mode</a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item" [ngClass]="{active: sortMode==1}" (click)="changeSortOrder(sortOrder,1)">Ascending</a>
+          <a href="#" class="dropdown-item" [ngClass]="{active: sortMode==2}" (click)="changeSortOrder(sortOrder,2)">Descending</a>
         </div>
       </li>
     </ul>
