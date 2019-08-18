@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CurrencyService } from '../CurrencyService';
 import { } from '@angular/platform-browser/animations'
 import { trigger, state, style, transition, animate } from '@angular/animations';
 

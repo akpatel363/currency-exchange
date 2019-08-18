@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, } from '@angular/core';
-import { CurrencyService } from '../app/CurrencyService';
+import { CurrencyService } from './currency.service';
 import { AppComponent } from './app.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 import { NavigationComponent } from './navigation/navigation.component';

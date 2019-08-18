@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { CurrencyService } from './CurrencyService';
-
+import { CurrencyService } from './currency.service';
+import { AppError } from './commons/app.error'
+import { NoConnectionError } from './commons/noconnection.error';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,10 +13,19 @@ export class AppComponent {
   mainhold = []
   data = []
   constructor(private service:CurrencyService){
-    this.service.getdata().then(value=>{
-      this.mainhold = value;
-      this.data= this.mainhold
-    })
+    this.service.getdata().subscribe(response=>{
+      console.log(response)
+      var keys = Object.getOwnPropertyNames(response)
+      keys.forEach((value)=>{
+        this.mainhold.push(response[value])
+      })
+      this.data = this.mainhold
+  },(error:AppError)=>{
+    if(error instanceof NoConnectionError)
+      alert("No Internet Connection\nPlease Refresh")
+    else
+      alert(error.error['message'])  
+  })
     console.log(this.data)
   }
   searchStringReceieved(message:string){
@@ -23,7 +33,7 @@ export class AppComponent {
       this.populateData()
       return
     }
-    this.data = this.mainhold.filter((value,index)=>{
+    this.data = this.mainhold.filter((value)=>{
       return value.name.toLowerCase().trim().includes(message.toLowerCase())
     })
     this.sort()
