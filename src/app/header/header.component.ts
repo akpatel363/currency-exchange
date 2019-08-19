@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
-
+  @Input() currData:Object
+  link:string
+  constructor() {}
   ngOnInit() {
+    this.link = `https://www.floatrates.com/daily/${(this.currData['code'] as string).toLowerCase()}.json`
   }
-
 }

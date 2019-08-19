@@ -1,3 +1,3 @@
 <app-navigation (sendSearchString) = "searchStringReceieved($event)" (sendSortOrder)="sortOrderReceieved($event)"></app-navigation>
-<app-header></app-header>
-<app-currency-container [list]="data" [length]="mainhold.length" (resetEmitter)="searchStringReceieved($event)"></app-currency-container>
+<app-header [currData]="currentData"></app-header>
+<app-currency-container [list]="data" [length]="mainhold.length" (resetEmitter)="searchStringReceieved($event)" (chnRates)="changeRates($event)"></app-currency-container>

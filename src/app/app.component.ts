@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { CurrencyService } from './currency.service';
 import { AppError } from './commons/app.error'
 import { NoConnectionError } from './commons/noconnection.error';
@@ -7,26 +7,37 @@ import { NoConnectionError } from './commons/noconnection.error';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'currency-exchange';
   sortNo = 0;
+  currentData:Object;
   mainhold = []
   data = []
   constructor(private service:CurrencyService){
-    this.service.getdata().subscribe(response=>{
-      console.log(response)
-      var keys = Object.getOwnPropertyNames(response)
-      keys.forEach((value)=>{
-        this.mainhold.push(response[value])
-      })
+    this.currentData = {
+      name:"Indian Rupee",
+      code:"INR"
+    }
+  }
+  private getCurrencyData(){
+    this.service.getdata(this.currentData['code']).subscribe(response=>{
+      this.mainhold = response
       this.data = this.mainhold
-  },(error:AppError)=>{
-    if(error instanceof NoConnectionError)
-      alert("No Internet Connection\nPlease Refresh")
-    else
-      alert(error.error['message'])  
-  })
-    console.log(this.data)
+    },(error:AppError)=>{
+      if(error instanceof NoConnectionError)
+        alert("No Internet Connection\nPlease Refresh")
+      else
+        throw error  
+    })
+  }
+  ngOnInit(){
+    this.getCurrencyData();
+  }
+  changeRates(newCurr:Object){
+    this.currentData = newCurr
+    this.mainhold.splice(0,this.mainhold.length)
+    this.data.splice(0,this.data.length)
+    this.getCurrencyData()
   }
   searchStringReceieved(message:string){
     if(message=='///^^///'){

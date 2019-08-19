@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, } from '@angular/core';
+import { NgModule, ErrorHandler, } from '@angular/core';
 import { CurrencyService } from './currency.service';
 import { AppComponent } from './app.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
@@ -9,6 +9,7 @@ import { CurrencyDetailsComponent } from './currency-details/currency-details.co
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppErrorHandler } from './commons/app-error.handler';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule
   ],
   providers: [
-    CurrencyService
+    CurrencyService,
+    { provide:ErrorHandler, useClass:AppErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

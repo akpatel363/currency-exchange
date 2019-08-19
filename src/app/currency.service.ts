@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs'
-import { catchError } from 'rxjs/operators';
+import { catchError,map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http'
 import { NoConnectionError } from './commons/noconnection.error';
 import { AppError } from './commons/app.error';
@@ -8,13 +8,20 @@ import { AppError } from './commons/app.error';
   providedIn: 'root'
 })
 export class CurrencyService {    
-  API_URL:string = 'https://www.floatrates.com/daily/inr.json'
+  API_URL:string = 'https://www.floatrates.com/daily/'
   constructor(private client:HttpClient){}
-  getdata(){
-    return this.client.get(this.API_URL).pipe(catchError((error:Response)=>{
-      if(error.status === 0)
-        return throwError(new NoConnectionError())
-      return throwError(new AppError(error))
+  getdata(name:string){
+    return this.client.get(this.API_URL+`${name}.json`).pipe(catchError(this.handleError),map(response=>{
+      var data = [] 
+      Object.getOwnPropertyNames(response).forEach((value)=>{
+        data.push(response[value])
+      })
+      return data;
     }))
+  }
+  private handleError(error:Response){
+    if(error.status === 0)
+      return throwError(new NoConnectionError())
+    return throwError(new AppError(error))
   }
 }

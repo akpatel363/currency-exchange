@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-currency-details',
@@ -6,12 +6,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./currency-details.component.css']
 })
 export class CurrencyDetailsComponent implements OnInit {
-  @Input() ob:any
+  @Input() ob:Object
+  @Output() changeRates:EventEmitter<Object>
   constructor() {
-    console.log(this.ob)
+    this.changeRates = new EventEmitter<Object>()
   }
-
-  ngOnInit() {
+  ngOnInit() {}
+  change(){
+    this.changeRates.emit(this.ob)
   }
-
 }
