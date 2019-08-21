@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler, } from '@angular/core';
 import { CurrencyService } from './currency.service';
 import { AppComponent } from './app.component';
+import { Routes, RouterModule, RoutesRecognized } from '@angular/router';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 import { NavigationComponent } from './navigation/navigation.component';
 import { CurrencyContainerComponent } from './currency-container/currency-container.component';
@@ -10,6 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppErrorHandler } from './commons/app-error.handler';
+import { ContainerComponent } from './container/container.component';
+
+const routes:Routes=[
+  {path:'',component:ContainerComponent},
+  {path:'rates/:name/:code',component:ContainerComponent}
+]
 
 @NgModule({
   declarations: [
@@ -17,14 +24,16 @@ import { AppErrorHandler } from './commons/app-error.handler';
     NavigationComponent,
     CurrencyContainerComponent,
     CurrencyDetailsComponent,
-    HeaderComponent
+    HeaderComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     CurrencyService,

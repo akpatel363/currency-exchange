@@ -17,17 +17,12 @@ export class CurrencyContainerComponent implements OnInit {
   @Input() list=[]
   @Input() length:number
   @Output() resetEmitter:EventEmitter<string>
-  @Output() chnRates:EventEmitter<Object>
   constructor() {
-    this.chnRates = new EventEmitter<Object>()
     this.resetEmitter = new EventEmitter<string>()
   }
   ngOnInit() {}
   search(message){
     console.log(message)
-  }
-  changeRates(ob:Object){
-    this.chnRates.emit(ob)
   }
   resetData(){
     this.resetEmitter.emit("///^^///")

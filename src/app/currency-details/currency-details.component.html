@@ -5,6 +5,6 @@
   <div class="card-body">
     <p class="card-title"><strong>Rate :</strong> {{ob['rate']}}</p>
     <p class="card-text"><strong>Inverse Rate :</strong> {{ob['inverseRate']}}</p>
-    <a href="#" class="btn btn-primary" (click)="change()">View Exchange Rates</a>
+    <a class="btn btn-primary" [routerLink]="['/rates',ob['name'],ob['code']]">View Exchange Rates</a>
   </div>
 </div>

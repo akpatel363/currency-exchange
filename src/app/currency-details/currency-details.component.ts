@@ -7,12 +7,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CurrencyDetailsComponent implements OnInit {
   @Input() ob:Object
-  @Output() changeRates:EventEmitter<Object>
-  constructor() {
-    this.changeRates = new EventEmitter<Object>()
-  }
+  constructor() {}
   ngOnInit() {}
-  change(){
-    this.changeRates.emit(this.ob)
-  }
 }
