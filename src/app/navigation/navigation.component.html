@@ -23,7 +23,7 @@
     </ul>
     <form class="form-inline" [formGroup]="searchForm" (ngSubmit)="getData(searchForm.value)">
       <input type="text" class="form-control mx-0 mx-md-2 mt-1 mt-md-0" name="currencyname" placeholder="Search Here....." [formControl]="searchForm.controls['currencyname']">
-      <input type="submit" class="btn btn-primary mr-1 mr-sm-2 mt-2 mt-sm-0">
+      <button type="submit" class="btn btn-primary mr-1 mr-sm-2 mt-2 mt-sm-0">Search</button>
       <input type="Reset" class="btn btn-danger mx-1 mx-sm-0 mt-2 mt-sm-0" (click)="reset()">
     </form>
   </div>

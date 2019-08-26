@@ -33,7 +33,7 @@ const routes:Routes=[
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes,{useHash:true})
   ],
   providers: [
     CurrencyService,
