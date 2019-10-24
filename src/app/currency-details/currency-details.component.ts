@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CurrencyDetailsComponent implements OnInit {
   @Input() ob:Object
+  @Input() code:string
   constructor() {}
   ngOnInit() {}
 }

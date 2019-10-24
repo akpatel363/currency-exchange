@@ -1,3 +1,4 @@
 <app-navigation (sendSearchString) = "searchStringReceieved($event)" (sendSortOrder)="sortOrderReceieved($event)"></app-navigation>
 <app-header [currData]="currentData"></app-header>
-<app-currency-container [list]="data" [length]="mainhold.length" (resetEmitter)="searchStringReceieved($event)"></app-currency-container>
+<app-currency-container [list]="data" [length]="mainhold.length" (resetEmitter)="searchStringReceieved($event)" [code]="currentData.code">
+</app-currency-container>

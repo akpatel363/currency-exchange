@@ -17,13 +17,11 @@ export class CurrencyContainerComponent implements OnInit {
   @Input() list=[]
   @Input() length:number
   @Output() resetEmitter:EventEmitter<string>
+  @Input() code:string
   constructor() {
     this.resetEmitter = new EventEmitter<string>()
   }
   ngOnInit() {}
-  search(message){
-    console.log(message)
-  }
   resetData(){
     this.resetEmitter.emit("///^^///")
   }
