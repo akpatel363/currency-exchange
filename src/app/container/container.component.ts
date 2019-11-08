@@ -18,11 +18,11 @@ export class ContainerComponent{
     this.parseRoute()
   }
   private parseRoute(){
-    this.route.params.subscribe(params=>{
-      this.mainhold.splice(0,this.mainhold.length)
-      this.data.splice(0,this.data.length)
-      if(params.code!=null){
-        this.currentData = params
+    this.route.queryParamMap.subscribe(params=>{
+      this.mainhold = []
+      this.data = []
+      if(params.get('code')!=null){
+        this.currentData = {code:params.get('code'),name:params.get('name')}
       }else{
         this.currentData = {
           name:"Indian Rupee",
@@ -37,12 +37,6 @@ export class ContainerComponent{
     this.service.getdata(this.currentData['code']).subscribe(response=>{
       this.mainhold = response
       this.data = this.mainhold
-      console.log(this.mainhold)
-    },(error:AppError)=>{
-      if(error instanceof NoConnectionError)
-        alert("No Internet Connection\nPlease Refresh")
-      else
-        throw error  
     })
   }
   searchStringReceieved(message:string){

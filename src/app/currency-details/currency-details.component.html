@@ -5,6 +5,8 @@
   <div class="card-body">
     <p class="card-title"><strong>Rate :</strong> {{ob['rate']}} {{ob['code']}}</p>
     <p class="card-text"><strong>Inverse Rate :</strong> {{ob['inverseRate']}} {{ code}}</p>
-    <a class="btn btn-primary" [routerLink]="['/rates',ob['name'],ob['code']]">View Exchange Rates</a>
+  </div>
+  <div class="card-footer">
+    <a class="btn btn-primary" [routerLink]="['/rates']" [queryParams]="{name:ob['name'],code:ob['code']}">View Exchange Rates</a>
   </div>
 </div>

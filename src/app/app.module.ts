@@ -12,10 +12,13 @@ import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppErrorHandler } from './commons/app-error.handler';
 import { ContainerComponent } from './container/container.component';
+import { FooterComponent } from './footer/footer.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes:Routes=[
-  {path:'',component:ContainerComponent},
-  {path:'rates/:name/:code',component:ContainerComponent}
+  {path:'',pathMatch:'full',redirectTo:'rates'},
+  {path:'rates',component:ContainerComponent},
+  {path:'**',component:PageNotFoundComponent}
 ]
 
 @NgModule({
@@ -25,7 +28,9 @@ const routes:Routes=[
     CurrencyContainerComponent,
     CurrencyDetailsComponent,
     HeaderComponent,
-    ContainerComponent
+    ContainerComponent,
+    FooterComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,7 @@ const routes:Routes=[
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes,{useHash:true})
+    RouterModule.forRoot(routes,{useHash:true,scrollPositionRestoration:'top'})
   ],
   providers: [
     CurrencyService,
