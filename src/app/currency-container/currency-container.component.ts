@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { } from '@angular/platform-browser/animations'
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
 import { CurrencyService } from '../currency.service';
-import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-currency-container',
