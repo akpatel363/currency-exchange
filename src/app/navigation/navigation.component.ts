@@ -7,28 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  searchForm:FormGroup
   sortOrder=0
   sortMode=1
-  @Output() sendSearchString:EventEmitter<string>
   @Output() sendSortOrder:EventEmitter<number>
   constructor(private formBuilder:FormBuilder,private router:Router) {
     this.sendSortOrder = new EventEmitter<number>()
-    this.sendSearchString = new EventEmitter<string>()
-    this.searchForm = this.formBuilder.group({
-      'currencyname':[null,Validators.required]
-    })
   }
   ngOnInit() {}
-  reset(){
-    this.sendSearchString.emit("///^^///")
-  }
-  getData(message){
-    if(this.searchForm.valid){
-      this.sendSearchString.emit(message.currencyname)
-    }
-  }
   invalidPage(){
+    return this.router.isActive('/rates',false)||this.router.isActive('/about',false)
+  }
+  isRatesActive(){
     return this.router.isActive('/rates',false)
   }
   changeSortOrder(no:number,mo:number){

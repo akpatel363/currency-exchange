@@ -11,13 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppErrorHandler } from './commons/app-error.handler';
-import { ContainerComponent } from './container/container.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AboutComponent } from './about/about.component';
 
 const routes:Routes=[
   {path:'',pathMatch:'full',redirectTo:'rates'},
-  {path:'rates',component:ContainerComponent},
+  {path:'rates',component:CurrencyContainerComponent},
+  {path:'about',component:AboutComponent},
   {path:'**',component:PageNotFoundComponent}
 ]
 
@@ -27,10 +28,9 @@ const routes:Routes=[
     NavigationComponent,
     CurrencyContainerComponent,
     CurrencyDetailsComponent,
-    HeaderComponent,
-    ContainerComponent,
     FooterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
