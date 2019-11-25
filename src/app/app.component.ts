@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { CurrencyService } from './currency.service';
+import { CurrencyService } from './commons/currency.service';
 import { AppError } from './commons/app.error'
 import { NoConnectionError } from './commons/noconnection.error';
 @Component({

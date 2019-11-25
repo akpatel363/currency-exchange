@@ -3,7 +3,7 @@
   <p class="display-4">{{currentData['name']}}</p>
 </div>
 <div class="container">
-  <input type="text" placeholder="Search" class="form-control mb-2" (keyup)="search(searchBar)" #searchBar>
+  <input type="text" placeholder="Search" [(ngModel)]="searchQuery" class="form-control mb-2">
   <div class="alert alert-danger" *ngIf="error" @FadeInOut>
     No Internet Connection.
   </div>

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { } from '@angular/platform-browser/animations'
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
-import { CurrencyService } from '../currency.service';
+import { CurrencyService } from '../commons/currency.service';
 
 @Component({
   selector: 'app-currency-container',
@@ -57,12 +57,8 @@ export class CurrencyContainerComponent implements OnInit {
     }
   }
   ngOnInit() { }
-  search(ele:HTMLInputElement){
-    if(ele.value){
-       this.searchQuery = ele.value
-    }else{
-      this.searchQuery = null
-    }
+  resetData(){
+    this.searchQuery = null
   }
   trackData(index, currency) {
     return currency ? currency.name : undefined;

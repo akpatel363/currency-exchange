@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs'
 import { catchError,map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http'
-import { NoConnectionError } from './commons/noconnection.error';
-import { AppError } from './commons/app.error';
+import { NoConnectionError } from './noconnection.error';
+import { AppError } from './app.error';
 @Injectable({
   providedIn: 'root'
 })
