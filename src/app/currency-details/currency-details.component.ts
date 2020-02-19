@@ -5,9 +5,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './currency-details.component.html',
   styleUrls: ['./currency-details.component.css']
 })
-export class CurrencyDetailsComponent implements OnInit {
+export class CurrencyDetailsComponent{
   @Input() ob:Object
-  @Input() code:string
   constructor() {}
-  ngOnInit() {}
 }

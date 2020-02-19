@@ -1,49 +1,35 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { } from '@angular/platform-browser/animations'
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CurrencyService } from '../commons/currency.service';
 
 @Component({
   selector: 'app-currency-container',
   templateUrl: './currency-container.component.html',
-  styleUrls: ['./currency-container.component.css'],
-  animations: [trigger("FadeInOut", [
-    state("void", style({ opacity: 0 })),
-    state("*", style({ opacity: 1 })),
-    transition("void => *", animate(800)),
-    transition("* => void", animate(800))
-  ])]
+  styleUrls: ['./currency-container.component.css']
 })
 export class CurrencyContainerComponent implements OnInit {
-  mainhold = []
+  mainhold:Array<any>
   currentData: Object
   sortNo: Number
   searchQuery:String
-  error=0
-  constructor(private service: CurrencyService, private route: ActivatedRoute) {
-    this.parseRoute()
-  }
+  error:string
+  constructor(private service: CurrencyService, private route: ActivatedRoute) { }
   private parseRoute() {
     this.route.queryParamMap.subscribe(params => {
       this.mainhold = []
-      if (params.get('code') != null && params.get('name') != null) {
+      this.searchQuery = this.error =null
+      if (params.get('code')&& params.get('name')) {
         this.currentData = { code: params.get('code'), name: params.get('name') }
       } else {
-        this.currentData = {
-          name: "Indian Rupee",
-          code: "INR"
-        }
+        this.currentData = { name: "Indian Rupee", code: "INR" }
       }
       this.getCurrencyData()
     })
   }
   private getCurrencyData() {
-    this.service.getdata(this.currentData['code']).subscribe(response => {
+    const obs = this.service.getdata(this.currentData['code']).subscribe(response => {
       this.mainhold = response
-    },(error)=>{
-      this.error=1
-    })
+    },(err)=>{this.error=err.message},()=>obs.unsubscribe())
   }
   getData(){
     if(this.searchQuery){
@@ -56,21 +42,14 @@ export class CurrencyContainerComponent implements OnInit {
       return this.mainhold
     }
   }
-  ngOnInit() { }
-  resetData(){
-    this.searchQuery = null
-  }
-  trackData(index, currency) {
-    return currency ? currency.name : undefined;
-  }
+  ngOnInit() { this.parseRoute() }
+  resetData(){ this.searchQuery = null }
+  trackData = (index, currency) => currency ? currency.name : undefined
   sort() {
     switch (this.sortNo) {
-      case 11: this.sortByName(); break;
-      case 21: this.sortByRate(); break;
-      case 31: this.sortByInverseRate(); break;
-      case 12: this.sortByName(); this.mainhold.reverse(); break;
-      case 22: this.sortByRate(); this.mainhold.reverse(); break;
-      case 32: this.sortByInverseRate(); this.mainhold.reverse(); break;
+      case 1: this.sortByName(); break;
+      case 2: this.sortByRate(); break;
+      case 3: this.sortByInverseRate(); break;
     }
   }
   sortOrderReceived(no: number) {
@@ -78,18 +57,12 @@ export class CurrencyContainerComponent implements OnInit {
     this.sort()
   }
   sortByName() {
-    this.mainhold.sort((a, b) => {
-      return a.name.trim() > b.name.trim() ? 1 : -1;
-    })
+    this.mainhold.sort((a, b) => a.name.trim() > b.name.trim() ? 1 : -1)
   }
   sortByRate() {
-    this.mainhold.sort((a, b) => {
-      return a.rate > b.rate ? 1 : -1
-    })
+    this.mainhold.sort((a, b) => a.rate > b.rate ? 1 : -1)
   }
   sortByInverseRate() {
-    this.mainhold.sort((a, b) => {
-      return a.inverseRate > b.inverseRate ? 1 : -1
-    })
+    this.mainhold.sort((a, b) => a.inverseRate > b.inverseRate ? 1 : -1)
   }
 }

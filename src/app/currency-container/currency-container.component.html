@@ -4,20 +4,18 @@
 </div>
 <div class="container">
   <input type="text" placeholder="Search" [(ngModel)]="searchQuery" class="form-control mb-2">
-  <div class="alert alert-danger" *ngIf="error" @FadeInOut>
-    No Internet Connection.
+  <div class="alert alert-danger" *ngIf="error!=null">{{error}}</div>
+  <div class="alert alert-danger" *ngIf="mainhold.length>0&&getData().length==0">
+    No matching results found. Click <a href="#" class="alert-link" (click)="resetData()">here</a> to reset.
   </div>
-  <div class="text-center py-3 my-4" *ngIf="mainhold.length==0&&!error" @FadeInOut>
+  <div class="text-center py-3 my-4" *ngIf="mainhold.length==0&&!error">
     <div class="spinner-border" style="height: 8em;width: 8em;">
       <span class="sr-only">Loading...</span>
     </div>
   </div>
-  <div class="alert alert-danger" *ngIf="mainhold.length>0&&getData().length==0" @FadeInOut>
-    No matching results found. Click <a href="#" class="alert-link" (click)="resetData()">here</a> to reset.
-  </div>
   <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 p-2" *ngFor="let da of getData(); trackBy:trackData">
-      <app-currency-details [ob]="da" [code]="currentData['code']"></app-currency-details>
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 p-2" *ngFor="let data of getData(); trackBy:trackData">
+      <app-currency-details [ob]="data"></app-currency-details>
     </div>
   </div>
 </div>

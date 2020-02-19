@@ -1,3 +1,6 @@
 export class AppError{
-    constructor(public error?:Response){}
+    message:string
+    constructor(msg="Something went wrong."){
+        this.message = msg
+    }
 }

@@ -13,15 +13,13 @@ export class CurrencyService {
   getdata(name:string){
     return this.client.get(this.API_URL+`${name}.json`).pipe(catchError(this.handleError),map(response=>{
       var data = [] 
-      Object.getOwnPropertyNames(response).forEach((value)=>{
-        data.push(response[value])
-      })
+      Object.getOwnPropertyNames(response).forEach((value)=>data.push(response[value]))
       return data;
     }))
   }
   private handleError(error:Response){
     if(error.status === 0)
       return throwError(new NoConnectionError())
-    return throwError(new AppError(error))
+    return throwError(new AppError())
   }
 }
