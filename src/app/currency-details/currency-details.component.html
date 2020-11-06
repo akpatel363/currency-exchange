@@ -1,10 +1,10 @@
 <div class="card h-100">
   <div class="card-body">
-    <h2 class="mb-2 mt-0">{{ob['name']}}</h2>
-    <p class="card-title"><strong>Rate :</strong> {{ob['rate']}} {{ob['code']}}</p>
-    <p class="card-text"><strong>Inverse Rate :</strong> {{ob['inverseRate']}} {{code}}</p>
+    <h2 class="mb-2 mt-0">{{ob.name}}</h2>
+    <p class="card-title"><strong>Rate :</strong> {{ob.rate}} {{ob.code}}</p>
+    <p class="card-text"><strong>Inverse Rate :</strong> {{ob.inverseRate}}</p>
   </div>
-  <div class="card-footer">
-    <a class="btn btn-primary" [routerLink]="['/rates']" [queryParams]="{name:ob['name'],code:ob['code']}">View Exchange Rates</a>
+  <div class="card-footer p-0">
+    <a class="btn btn-primary btn-block" [routerLink]="['/rates']" [queryParams]="{name:ob.name,code:ob.code}">View Exchange Rates</a>
   </div>
 </div>

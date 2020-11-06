@@ -1,21 +1,25 @@
 <app-navigation (sendSortOrder)="sortOrderReceived($event)"></app-navigation>
-<div class="jumbotron text-center mb-3">
+<div class=" p-4 bg-light text-center mb-3">
   <p class="display-4">{{currentData['name']}}</p>
 </div>
 <div class="container">
-  <input type="text" placeholder="Search" [(ngModel)]="searchQuery" class="form-control mb-2">
-  <div class="alert alert-danger" *ngIf="error!=null">{{error}}</div>
-  <div class="alert alert-danger" *ngIf="mainhold.length>0&&getData().length==0">
-    No matching results found. Click <a href="#" class="alert-link" (click)="resetData()">here</a> to reset.
-  </div>
-  <div class="text-center py-3 my-4" *ngIf="mainhold.length==0&&!error">
-    <div class="spinner-border" style="height: 8em;width: 8em;">
-      <span class="sr-only">Loading...</span>
+  <ng-container *ngIf="currencies; else noRes">
+    <div class="input-group">
+      <span class="input-group-text">Search</span>
+      <input type="text" placeholder="Search" [(ngModel)]="searchQuery" class="form-control">
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 p-2" *ngFor="let data of getData(); trackBy:trackData">
-      <app-currency-details [ob]="data"></app-currency-details>
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 p-2" *ngFor="let data of currencies | filter:searchQuery:sortNo; trackBy:trackData">
+        <app-currency-details [ob]="data"></app-currency-details>
+      </div>
     </div>
-  </div>
+  </ng-container>
 </div>
+<ng-template #noRes>
+  <div class="text-center py-3 my-4" *ngIf="!error">
+    <div class="spinner-grow" style="height: 6em;width: 6em;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+</ng-template>

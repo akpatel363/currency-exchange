@@ -12,8 +12,7 @@ export class CurrencyService {
   constructor(private client:HttpClient){}
   getdata(name:string){
     return this.client.get(this.API_URL+`${name}.json`).pipe(catchError(this.handleError),map(response=>{
-      var data = [] 
-      Object.getOwnPropertyNames(response).forEach((value)=>data.push(response[value]))
+      var data = Object.values(response);
       return data;
     }))
   }
